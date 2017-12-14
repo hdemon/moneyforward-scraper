@@ -30,6 +30,12 @@ const scrapeTopPage = async () => {
   return html;
 };
 
+const scrapeLiabilitiesPage = async () => {
+  await page.goto('https://moneyforward.com/bs/liability');
+  const html = await page.$eval('html', e => e.outerHTML);
+  return html;
+};
+
 const getCurrency = (current_price) =>
   current_price.includes('.') ? 'doller' : 'yen';
 
@@ -101,6 +107,21 @@ const parseTopPage = (html) => {
   return cashes;
 }
 
+const parseLiabilitiesPage = (html) => {
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+  const liabilities = Array.from(document.querySelectorAll('#liability_det > section > section > table tbody tr')).map(liability => {
+    const value = liability.querySelector('.number') ? liability.querySelector('.number').innerHTML : null;
+    return {
+      name: liability.querySelectorAll('td')[3].innerHTML,
+      value: value ? convertToCurrencyType(value) : null,
+      currency: value ? getCurrency(value) : null,
+    };
+  });
+
+  return liabilities;
+}
+
 
 (async () => {
   browser = await initializeBrowser();
@@ -109,6 +130,7 @@ const parseTopPage = (html) => {
     version: package.version,
     cash: parseTopPage(await scrapeTopPage()),
     properties: parseProtfolioPage(await scrapeProtfolioPage()),
+    liabilities: parseLiabilitiesPage(await scrapeLiabilitiesPage()),
   }
   browser.close();
   console.log(data);
