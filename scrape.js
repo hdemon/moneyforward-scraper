@@ -137,7 +137,10 @@ const parseLiabilitiesPage = (html) => {
   }
   browser.close();
   console.log(data);
-})().catch(err => {
+})().catch(async (err) => {
   console.error(err);
-  browser.close();
+  console.error(`---`)
+  console.error(await page.$eval('html', e => e.outerHTML));
+  await page.screenshot({ path: 'error.png' });
+  await browser.close();
 }); 
