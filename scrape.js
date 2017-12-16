@@ -11,8 +11,8 @@ const initializeBrowser = async () =>
 const login = async () => {
   page = await browser.newPage();
   await page.goto('https://moneyforward.com/users/sign_in');
-  await page.type('#sign_in_session_service_email', process.argv[2]);
-  await page.type('#sign_in_session_service_password', process.argv[3]);
+  await page.type('#sign_in_session_service_email', process.argv[2] || process.env.MONEYFORWARD_ID);
+  await page.type('#sign_in_session_service_password', process.argv[3] || process.env.MONEYFORWARD_PASSWORD);
   await page.click('#login-btn-sumit');
   await page.waitForSelector('#header-container > header > div.global-menu > ul > li:nth-child(2) > a');
   await page.click('#header-container > header > div.global-menu > ul > li:nth-child(2) > a');
