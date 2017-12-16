@@ -124,6 +124,9 @@ const parseLiabilitiesPage = (html) => {
 
 
 (async () => {
+  if (!process.env.MONEYFORWARD_ID || !process.env.MONEYFORWARD_PASSWORD) {
+    console.error('MONNEYFORWARD_ID or MONEYFORWARD_PASSWORD are missing.')
+  }
   browser = await initializeBrowser();
   await login();
   const data = {
