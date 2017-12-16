@@ -138,6 +138,6 @@ const parseLiabilitiesPage = (html) => {
   browser.close();
   console.log(data);
 })().catch(err => {
-  browser.close();
   console.error(err);
+  browser.close();
 }); 
