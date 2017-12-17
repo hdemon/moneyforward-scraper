@@ -141,6 +141,5 @@ const parseLiabilitiesPage = (html) => {
   console.error(err);
   console.error(`---`)
   console.error(await page.$eval('html', e => e.outerHTML));
-  await page.screenshot({ path: 'error.png' });
   await browser.close();
 }); 
