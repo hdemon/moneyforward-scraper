@@ -6,7 +6,7 @@ const package = require('./package.json');
 let browser, page;
 
 const initializeBrowser = async () =>
-  await puppeteer.launch();
+  await puppeteer.launch({ headless: true });
 
 const login = async () => {
   page = await browser.newPage();
