@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "jsdom": "^11.5.1",
-    "puppeteer": "^0.13.0"
+    "jsdom": "^15.1.1",
+    "puppeteer": "^1.17.0"
   },
   "name": "moneyforward-scraper",
   "version": "1.0.0",
@@ -19,9 +19,5 @@
     "url": "https://github.com/hdemon/moneyforward-scraper/issues"
   },
   "homepage": "https://github.com/hdemon/moneyforward-scraper#readme",
-  "description": "",
-  "dependencies": {
-    "jsdom": "^11.5.1",
-    "puppeteer": "^0.13.0"
-  }
+  "description": ""
 }
